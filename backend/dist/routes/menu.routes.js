@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const menu_controller_1 = require("../controllers/menu.controller");
+const menu_service_1 = require("../services/menu.service");
+const menu_repository_1 = require("../repositories/menu.repository");
+const menu_model_1 = __importDefault(require("../models/menu.model"));
+const errorHandler_1 = require("../middlewares/errorHandler");
+const router = express_1.default.Router();
+const menuRepository = new menu_repository_1.MenuRepository(menu_model_1.default);
+const menuService = new menu_service_1.MenuService(menuRepository);
+const menuController = new menu_controller_1.MenuController(menuService);
+router.get("/", (req, res, next) => menuController.getAllMenus(req, res, next));
+router.post("/menus", (req, res, next) => menuController.createMenu(req, res, next));
+router.get("/menus/:name", (req, res, next) => menuController.getMenuByName(req, res, next));
+router.put("/menus/add-item", (req, res, next) => menuController.addItemToMenu(req, res, next));
+router.use(errorHandler_1.errorHandler);
+exports.default = router;
