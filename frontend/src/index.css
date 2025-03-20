@@ -1,0 +1,29 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Kelly+Slab:wdth,wght@75..125,100..900&display=swap");
+
+body {
+  background-color: black;
+}
+
+:root {
+  --primary-color: #0796EF;
+  --secondary-icon-color: #857878;
+  --secondarytxt: #BBBBBB;
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-secondary-icon {
+  color: var(--secondary-icon-color);
+}
+
+.text-secondary {
+  color: var(--secondarytxt);
+  font-family: "Kelly Slab", cursive;
+}
+
+a {
+  transition: color 0.1s ease-in-out;
+}
